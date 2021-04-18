@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New House{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row">
+    
+        <h1 class="text-white">Create new Houses</h1>
+
+        {{ include('admin/houses/_form.html.twig') }}
+
+        <a href="{{ path('houses_index') }}">back to list</a>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+{{parent()}} 
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+ <script>
+    $(function(){
+        $("#users_houses").select2()
+    })
+</script>
+
+{% endblock %}

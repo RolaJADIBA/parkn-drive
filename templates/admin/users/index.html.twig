@@ -1,0 +1,52 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+        <h1 class="text-white mt-3">Users index</h1>
+
+        <table class="table text-center text-white mt-3">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Houses</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% for house in user.houses %}
+                        <ul>
+                            <li>{{house.adresse}}</li>
+                        </ul>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('users_show', {'id': user.id}) }}">show</a>
+                        <a href="{{ path('users_edit', {'id': user.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('users_new') }}">Create new</a>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New UsersCars{% endblock %}
+
+{% block body %}
+    <h1>Create new UsersCars</h1>
+
+    {{ include('admin/users_cars/_form.html.twig') }}
+
+    <a href="{{ path('users_cars_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Cars index{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+
+        <h1 class="text-white mt-3">Cars index</h1>
+
+        <table class="table text-center text-white">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Mark</th>
+                    <th>Model</th>
+                    <th>Image</th>
+                    <th>GearBox</th>
+                    <th>Mileage</th>
+                    <th>ProdctionDate</th>
+                    <th>Active</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td>{{ car.id }}</td>
+                    <td>{{ car.mark }}</td>
+                    <td>{{ car.model }}</td>
+                    <td><img src="{{ asset('cars/' ~ car.image ) }}" class="h-25 w-25" alt="{{ car.mark }}"></td>
+                    <td>{{ car.gearBox }}</td>
+                    <td>{{ car.mileage }}</td>
+                    <td>{{ car.prodctionDate ? car.prodctionDate|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" {{ (car.active) ? 'checked' : ''}} type="checkbox" data-id={{ car.id }}>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{{ path('cars_show', {'id': car.id}) }}">show</a>
+                        <a href="{{ path('cars_edit', {'id': car.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('cars_new') }}">Create new</a>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+{{parent()}}
+
+    <script>
+        window.onload = () =>{
+            let active = document.querySelectorAll("[type=checkbox]")
+            for (let button of active) {
+                button.addEventListener("click", function () {
+                    let xmlhttp = new XMLHttpRequest;
+
+                    xmlhttp.open("get",`/admin/cars/active/${this.dataset.id}`)
+                    xmlhttp.send()
+                })
+            }
+        }
+    </script>
+{% endblock %}

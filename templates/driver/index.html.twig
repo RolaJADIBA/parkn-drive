@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDefaultController!{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row">
+
+        <h1>List of cars of {{app.user.firstname}}</h1>
+
+        <div class="mt-3">
+            <table class="table text-center text-white">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Mark</th>
+                        <th>Model</th>
+                        <th>Image</th>
+                        <th>GearBox</th>
+                        <th>ProdctionDate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.cars.id }}</td>
+                        <td>{{ car.cars.mark }}</td>
+                        <td>{{ car.cars.model }}</td>
+                        <td><img src="{{ asset('cars/' ~ car.cars.image ) }}" class="h-25 w-25" alt="{{ car.cars.mark }}"></td>
+                        <td>{{ car.cars.gearBox }}</td>
+                        <td>{{ car.cars.prodctionDate ? car.cars.prodctionDate|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a href="{{ path('driver_car_delete', {'id': car.cars.id}) }}" class="btn btn-danger mt-3">Delete</a>
+                            <a data-mileage={{car.cars.mileage}} class="btn btn-success mt-3" data-bs-toggle="modal" data-id="{{car.cars.id}}" data-bs-target="#exampleModal">increase distance</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('driver_car_show') }}" class="btn btn-primary mt-3 mr-5">Add new car to your list</a>
+            <a href="{{ path('driver_seeHouses') }}" class="btn btn-warning mt-3 ml-5 ">Show drivers's house</a>
+
+        </div>
+
+        <!-- Modal -->
+        {% for car in cars %}           
+        <form method="POST" id="myForm">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Increase Distance Total</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="number" id="distance" value="">
+                            <input type="hidden" id="identification" value="{{car.cars.id}}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+{{parent()}} 
+
+<script>
+window.onload = () =>{
+    let mileages = document.querySelectorAll('[data-mileage]')
+
+    for(let mileage of mileages){
+        mileage.addEventListener("click", distanceValue)
+    }
+
+    function distanceValue() {
+
+        let distance = this.dataset.mileage
+
+        let id = document.querySelector("#identification").value
+
+        console.log(id)
+
+        document.querySelector("#exampleModal .modal-body input").setAttribute('value', distance)
+
+    }
+
+    let myForm = document.querySelector("#myForm");
+
+        myForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        let newDistance = document.querySelector("#distance").value;
+
+        console.log(newDistance)
+
+        let xmlhttp = new XMLHttpRequest;
+
+        xmlhttp.open("get",`/driver/increase/${newDistance}/${id}`)
+        xmlhttp.send()
+
+        })
+
+
+
+}
+</script>
+{% endblock %}
+

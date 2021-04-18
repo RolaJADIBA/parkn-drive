@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+        <h1 class="text-white mt-3">Drivers index</h1>
+
+        <table class="table text-center text-white mt-3">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Name</th>
+                    <th>Houses</th>
+                </tr>
+            </thead>
+            <tbody>
+            {# {% if is_granted('ROLE_DRIVER') %} #}
+            {% for user in users %}
+                {% for role in user.roles %}
+                    {% if role == "ROLE_DRIVER" %}
+                        <tr>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>
+                                {% for house in user.houses %}
+                                <ul>
+                                    <li>{{house.adresse}}</li>
+                                </ul>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock %}

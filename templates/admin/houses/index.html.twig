@@ -1,0 +1,46 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Houses index{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+
+        <h1 class="text-white mt-3">Houses index</h1>
+
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Adresse</th>
+                    <th>PostalCode</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for house in houses %}
+                <tr>
+                    <td>{{ house.id }}</td>
+                    <td>{{ house.adresse }}</td>
+                    <td>{{ house.postalCode }}</td>
+                    <td>{{ house.city }}</td>
+                    <td>{{ house.country }}</td>
+                    <td>
+                        <a href="{{ path('houses_show', {'id': house.id}) }}">show</a>
+                        <a href="{{ path('houses_edit', {'id': house.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('houses_new') }}">Create new</a>
+    </div>
+</div>
+{% endblock %}

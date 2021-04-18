@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDefaultController!{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row mt-5">
+
+        <h1 class="text-white">List of cars of {{app.user.firstname}}</h1>
+
+        <div class="mt-3 ">
+            <table class="table text-center text-white table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Mark</th>
+                        <th>Model</th>
+                        <th>Image</th>
+                        <th>GearBox</th>
+                        {# <th>Mileage</th> #}
+                        <th>ProdctionDate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.cars.id }}</td>
+                        <td>{{ car.cars.mark }}</td>
+                        <td>{{ car.cars.model }}</td>
+                        <td><img src="{{ asset('cars/' ~ car.cars.image ) }}" class="h-25 w-25" alt="{{ car.cars.mark }}"></td>
+                        <td>{{ car.cars.gearBox }}</td>
+                        {# <td>{{ car.cars.mileage }}</td> #}
+                        <td>{{ car.cars.prodctionDate ? car.cars.prodctionDate|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a href="{{ path('user_car_delete', {'id': car.cars.id}) }}" class="btn btn-danger mt-3">Delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('user_car_show') }}" class="btn btn-primary mt-3">Add new car to your list</a>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

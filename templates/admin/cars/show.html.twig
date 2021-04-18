@@ -1,0 +1,53 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Cars{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row">
+
+    <h1 class="text-white mt-3">Cars</h1>
+
+    <table class="table text-white">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ car.id }}</td>
+            </tr>
+            <tr>
+                <th>Mark</th>
+                <td>{{ car.mark }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car.model }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td><img src="{{ asset('cars/' ~ car.image ) }}" alt="{{ car.mark }}"></td>
+            </tr>
+            <tr>
+                <th>GearBox</th>
+                <td>{{ car.gearBox }}</td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>{{ car.mileage }}</td>
+            </tr>
+            <tr>
+                <th>ProdctionDate</th>
+                <td>{{ car.prodctionDate ? car.prodctionDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('cars_index') }}">back to list</a>
+
+    <a href="{{ path('cars_edit', {'id': car.id}) }}">edit</a>
+
+    {{ include('admin/cars/_delete_form.html.twig') }}
+
+    </div>
+</div>
+{% endblock %}

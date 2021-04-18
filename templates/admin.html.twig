@@ -1,0 +1,62 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<div class="conatiner">
+    <div class="row justify-content-center p-5">
+
+        {# User List #}
+        <a href="">
+        </a>
+        <div class="col-md-6 mr-5">
+            <a href="{{ path('users_index') }}">
+                <div class="card bg-dark text-white border border-5 border-secondary shadow" style="width: 16rem;">
+                    <img src="{{ asset ('images/icon.jpg') }}" class="card-img" alt="User List">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title text-dark">Users List</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Cars List #}
+        <div class="col-md-6 mr-5">
+            <a href="{{ path('cars_index') }}">
+                <div class="card bg-dark text-white border border-5 border-secondary shadow" style="width: 16rem;">
+                    <img src="{{ asset ('images/icon.jpg') }}" class="card-img" alt="cars list">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title text-dark">Cars List</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# House List #}
+        <div class="col-md-6 mt-5 mr-5">
+            <a href="{{ path('houses_index') }}">
+                <div class="card bg-dark text-white border border-5 border-secondary shadow" style="width: 16rem;">
+                    <img src="{{ asset ('images/icon.jpg') }}" class="card-img" alt="houses list">
+                    <div class="card-img-overlay">
+                        <h3 class="card-title text-dark">Houses List</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# User's Cars List #}
+            <div class="col-md-6 mt-5 mr-5">
+                <a href="{{ path('users_cars_index') }}">
+                    <div class="card bg-dark text-white border border-5 border-secondary shadow" style="width: 16rem;">
+                        <img src="{{ asset ('images/icon.jpg') }}" class="card-img" alt="user's cars">
+                        <div class="card-img-overlay">
+                            <h3 class="card-title text-dark">User's Cars List</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+    </div>
+</div>
+    
+{% endblock %}

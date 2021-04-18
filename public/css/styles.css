@@ -1,0 +1,64 @@
+body{
+    background-color: #212529;
+}
+/************FOND****************/
+.fond{
+    background: url("../images/fond.jpg") no-repeat center;
+    background-size: cover;
+    height: 75vh;
+}
+
+/*************DOT**************/
+.dot{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 3px solid gray;
+    border-radius: 50%;
+    }
+
+/************NAVBAR***************/
+nav{
+  background-color: #454545;
+}
+
+nav .collapse{
+    position: relative;
+}
+nav .dropdown{
+    position: absolute;
+    left: 1200px;
+    top: -17px;
+}  
+
+  /************************************FOOTER**********************************************/
+  footer {
+    background-color: #454545;
+    color: white;
+    padding: 20px;
+    font-size: 12px;
+    /* color: #9e9794; */
+  }
+  
+  footer .link a{
+    color: white;
+  }
+  
+  footer img{
+    margin-left: 50px;
+  }
+  
+  footer h3 {
+    color: #d53b2d;
+  }
+  
+  footer .col-md-4 a i {
+    font-size: 2rem;
+    margin-right: 15px;
+    color: white !important;
+  }
+  
+  footer hr{
+    background-color: white;
+  }
+

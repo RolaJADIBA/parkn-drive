@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Cars{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+        <div class="p-5 mb-5">
+
+            <h1 class="text-white">Edit your infos</h1>
+
+            {{ include('user_default/_form.html.twig', {'button_label': 'Update'}) }}
+
+            <a href="{{ path('user_showInfo') }}">back to list</a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

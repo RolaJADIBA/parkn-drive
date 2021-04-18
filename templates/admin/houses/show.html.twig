@@ -1,0 +1,44 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Houses{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row">
+
+        <h1 class="text-white">Houses</h1>
+
+        <table class="table text-white">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ house.id }}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ house.adresse }}</td>
+                </tr>
+                <tr>
+                    <th>PostalCode</th>
+                    <td>{{ house.postalCode }}</td>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <td>{{ house.city }}</td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>{{ house.country }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('houses_index') }}">back to list</a>
+
+        <a href="{{ path('houses_edit', {'id': house.id}) }}" class="btn btn-primary">edit</a>
+
+        {{ include('admin/houses/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

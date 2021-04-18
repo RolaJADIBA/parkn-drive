@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Park'n Drive!{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    
+    <div class="container_fluid">
+        <div class="fond">
+        </div>
+    </div>
+
+{% endblock %}

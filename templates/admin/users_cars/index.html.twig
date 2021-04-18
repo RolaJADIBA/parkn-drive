@@ -1,0 +1,39 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}UsersCars index{% endblock %}
+
+{% block body %}
+    <h1>UsersCars index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+                <th>Car</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for users_car in users_cars %}
+            <tr>
+                <td>{{ users_car.id }}</td>
+                <td>
+                    {{ users_car.users }}
+                </td>
+                <td>{{ users_car.cars }}</td>
+                <td>
+                    <a href="{{ path('users_cars_show', {'id': users_car.id}) }}">show</a>
+                    <a href="{{ path('users_cars_edit', {'id': users_car.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_cars_new') }}">Create new</a>
+{% endblock %}

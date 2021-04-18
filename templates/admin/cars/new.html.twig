@@ -1,0 +1,18 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Cars{% endblock %}
+
+{% block body %}
+<div class="container p-5">
+    <div class="row">
+
+        <h1 class="text-white mt-3">Create new Cars</h1>
+
+        {{ include('admin/cars/_form.html.twig') }}
+
+        <a href="{{ path('cars_index') }}">back to list</a>
+
+    </div>
+</div>
+
+{% endblock %}

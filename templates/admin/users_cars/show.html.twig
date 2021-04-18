@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}UsersCars{% endblock %}
+
+{% block body %}
+    <h1>UsersCars</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ users_car.id }}</td>
+            </tr>
+            
+            <tr>
+                <td>User</td>
+                <td>{{ users_car.users }}</td>
+            </tr>
+
+            <tr>
+                <td>Car</td>
+                <td>{{ users_car.cars }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('users_cars_index') }}">back to list</a>
+
+    <a href="{{ path('users_cars_edit', {'id': users_car.id}) }}">edit</a>
+
+    {{ include('admin/users_cars/_delete_form.html.twig') }}
+{% endblock %}

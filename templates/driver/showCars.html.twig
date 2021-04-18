@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserDefaultController!{% endblock %}
+
+{% block body %}
+
+<div class="container p-5">
+    <div class="row justify-content-center">
+        {% for car in cars %}
+        <div class="col-md-3">
+            <div class="card mr-3 mt-5" style="width: 18rem;">
+                <img src="{{ asset('cars/' ~ car.image )| imagine_filter('my_thumb') }}" class="card-img-top" alt="{{ car.mark }}">
+                {% if car.active == true %}
+                    <h6 class="text-danger text-center">Reserve</h6>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{car.mark}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{car.model}}</h6>
+                    <p class="card-text">{{ car.gearBox }}</p>
+                    {# <p class="card-text">{{ car.mileage }}</p> #}
+                    <p class="card-text">{{ car.prodctionDate ? car.prodctionDate|date('Y-m-d') : '' }}</p>
+                    {% if car.active == false %}
+                        <a href="{{ path('driver_car_add', {'id': car.id}) }}" class="btn btn-primary btn-sm">add to your list</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('driver')}}" class="btn btn-warning">back to list</a>
+</div>
+
+{% endblock %}

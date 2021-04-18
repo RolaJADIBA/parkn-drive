@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Show User Info{% endblock %}
+
+{% block body %}
+
+<div class="container p-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="card mt-5 shadow p-3" style="width: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title"><span class="text-danger">First name:</span>  {{user.firstname}}</h5>
+                <h5 class="card-title"><span class="text-danger">Name:</span> {{user.name}}</h5>
+                <h5 class="card-text"><span class="text-danger">Email:</span> {{user.email}}</h5>
+                <h5 class="card-text"><span class="text-danger">Houses:</span> 
+                {% for house in user.houses %}
+                    <ul>
+                        <li>
+                            <p>{{house.adresse}}</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+                </h5>
+                <a href="{{ path('user_editInfo', {'id': user.id}) }}" class="btn btn-warning">edit your infos</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
